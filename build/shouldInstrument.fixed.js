@@ -154,22 +154,23 @@ function shouldInstrument(filename, options, config) {
     return false;
   }
 
-  const runFilesRegex = new RegExp(/\/_unit_test_launcher.sh.runfiles/)
-  const regex = new RegExp(/(?=(\/sandbox)).*(?=(\/\execroot))/);
-  const buildStr = (str) => {
+  // PASTE HERE
+  const impl = (str) => {
+    const runFilesRegex = new RegExp(/\/_unit_test_launcher.sh.runfiles/);
+    const regex = new RegExp(/(?=(\/sandbox)).*(?=(\/\execroot))/);
     const first = str.split(runFilesRegex)[0];
     const second = first.split(regex);
-    const joined = [second[0], second[3]].join("");
-    return joined;
+    return second.length > 1
+      ? [second[0], second[second.length - 1]].join("")
+      : second[0];
   };
-  const newRootConfig = buildStr(process.env.TEST_SRCDIR);
   if (
     // still cover if `only` is specified
     !options.collectCoverageOnlyFrom &&
     options.collectCoverageFrom.length &&
     !(0, _jestUtil().globsToMatcher)(options.collectCoverageFrom)(
       (0, _jestUtil().replacePathSepForGlob)(
-        path().relative(newRootConfig, filename)
+        path().relative(impl(process.env.TEST_SRCDIR), filename)
       )
     )
   ) {

@@ -5,7 +5,9 @@ const impl = (str) => {
   const regex = new RegExp(/(?=(\/sandbox)).*(?=(\/\execroot))/);
   const first = str.split(runFilesRegex)[0];
   const second = first.split(regex);
-  return second.length > 1 ? [second[0], second[3]].join("") : second[0];
+  return second.length > 1
+    ? [second[0], second[second.length - 1]].join("")
+    : second[0];
 };
 //END COPY
 
