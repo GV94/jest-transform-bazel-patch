@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "index": "HOME=$HOME; diff -u ./build/shouldInstrument.js shouldInstrument.fixed.js > coverage.patch",
+    "index": "HOME=$HOME; diff -u ./build/shouldInstrument.js ./build/shouldInstrument.fixed.js > coverage.patch",
     "test": "node --test"
   },
   "repository": {
