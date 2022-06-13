@@ -1,0 +1,26 @@
+{
+  "name": "jest-transform-bazel-patch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "index": "HOME=$HOME; diff -u ./build/shouldInstrument.js shouldInstrument.fixed.js > coverage.patch",
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GV94/jest-transform-bazel-patch.git"
+  },
+  "keywords": [
+    "bazel",
+    "jest",
+    "patch",
+    "coverage"
+  ],
+  "author": "Victor Gustafsson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GV94/jest-transform-bazel-patch/issues"
+  },
+  "homepage": "https://github.com/GV94/jest-transform-bazel-patch#readme"
+}
